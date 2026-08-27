@@ -67,10 +67,10 @@
 *   ヒアドキュメントは、複数行の文字列を表現するための構文です。echoやprintと組み合わせて、複数行のメッセージを出力することができます。
 *   echoやprintと記述したあと<mark><<<</mark>の後に指定した記号が、文字列の終わりを表します。
 -   以下、例
-        echo <<<END
-        Welcome
-        to
-        PHP
+        echo <<< END <br>
+        Welcome<br>
+        to<br>
+        PHP<br>
         END;
 
 ## input 
@@ -207,15 +207,15 @@
 ### switch文
 *   ユーザーの選択内容に応じて、実行される処理を何通りかに分岐したいことがあります。if文やif-else文を用いて記述することもできますが、<mark>switch</mark>文を使用することで、より簡潔に記述することができます。
 *   switch (式) {<br>
-        case 値A:
-        式の値が値Aの時の処理;
-        break;
-        case 値B:
-        式の値が値Bの時の処理;
-        break;
-        case 値C:
-        式の値が値Cの時の処理;
-        break;
+        case 値A:<br>
+        式の値が値Aの時の処理;<br>
+        break;<br>
+        case 値B:<br>
+        式の値が値Bの時の処理;<br>
+        break;<br>
+        case 値C:<br>
+        式の値が値Cの時の処理;<br>
+        break;<br>
     }
 *   switch文の{}の中には、複数の<mark>case</mark>文を並べることができます。switch文の式の値がcase文に記述した値に等しいとき、そのcase文の処理を実行します。
 *   case文の末尾には<mark>break</mark>文を記述します。break文は処理を終了して、switch文を抜け出します。break文を記述しない方法がありますが、最初のうちは記載する方がおすすめです。
