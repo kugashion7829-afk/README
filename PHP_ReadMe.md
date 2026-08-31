@@ -552,11 +552,33 @@ foreach (配列 as 変数) { <br>
 *   メッセージをファイルに保存する際には、<mark>JSON</mark>という形式を使います。JSONは「ジェイソン」と読みます。JSONはJavaScript Object Notationの略です。
 *   Jsonはプログラミング言語のJavaScriptにおける表記法に由来しますが、JavaScriptに限らず、いろいろなプログラミング言語で利用されています。PHPにおいてJSONを使う利点は、文字列や配列といったデータ構造を簡単にファイルに書き込んだり、読み込んだりできることです。<br>今回は、PHPすくリプtと同じフォルダにある<mark>board.txt</mark>というテキストファイルに、メッセージの一覧を保存します。
 
+```
+$file='board.txt';
+if (file_exists($file)) {
+    $board=json_decode(file_get_contents($file));
+}
+$board[]=htmlspecialchars($_REQUEST['message']);
+file_put_contents($file,json_encode($board));
+foreach ($board as $message) {
+    echo '<p>', $message, '</p><hr>';
+}
+```
+
 ### file_exists関数
 `file_exists(ファイル名)`
 *   ファイルを読み込むための関数。ファイルが存在するか調べます。
 *   file_exists関数は、<mark>指定したファイルが存在する場合にはtrue、存在しない場合にはfalseを返します。</mark>
 
+### file_get_contents関数
+`file_get_contents(ファイル名)`
+*   flie_get_contents関数は、ファイルの全体を読み込み、内容を文字列として返します。
+
+### json_decode関数
+`json_decode(文字列)`
+*   読み込むファイルは、JSON形式で保存されているので、PHPで扱える形式に変換する必要があります。そこで、JSONの入力を行う<mark>json_decode</mark>関数を使用します。
+*   json_decode関数は、JSON形式の文字列を解釈して、PHPの文字列や配列といったデータに変換します。ここでは、file_get_contents関数で取得した文字列を、json_decode関数に渡します。
+
+#### JSONファイルの読み込みは、存在確認、文字列の取得、文字列の変換の順番で行います。
 
 ## `phpinfo()`
 *   今動いているPHPの環境情報をすべて表示する
