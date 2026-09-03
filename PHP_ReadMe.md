@@ -753,7 +753,7 @@ create database shop default character set utf8 collate utf8_general_ci;
 ```
 *   <mark>create database</mark>は、データベースを作成するコマンドです。続けて指定する名前で、データベースを作成します。
 *   <mark>default character set</mark>は、データベースで用いる文字コードを表します。ここではUTF-8を表す「utf8」を指定します。
-*   <mark>collate</mark>は、データベースにおいて行を並べる順番を決めるための方式を表します。ここではUTF-8を用いた方式の1つである、「utf8_general_ci」を指定します。MySQLにおけるcollateの詳細は、「https://dev.mysql.com/doc/refman/5.6/ja/charset-collations.html」\などに記載されています。
+*   <mark>collate</mark>は、データベースにおいて行を並べる順番を決めるための方式を表します。ここではUTF-8を用いた方式の1つである、「utf8_general_ci」を指定します。MySQLにおけるcollateの詳細は、「https://dev.mysql.com/doc/refman/5.6/ja/charset-collations.html」 などに記載されています。
 
 # 演算子
 
