@@ -609,7 +609,7 @@ foreach ($board as $message) {
 ## アップロードされたファイルの確認
 *   <form>タグのファイル選択欄からアップロードされたファイルは、一時的なファイルに保存されます。この一時的なファイルのファイル名は、以下の記述で取得できます。
 `$_FILES['file']['tmp_name']`
-*   <span style="color : blue">$_FILES<span>は、PHPによって事前に用意された変数です。fileは入力
+*   <span style="color : blue; ">$_FILES<span>は、PHPによって事前に用意された変数です。fileは入力
 ## `phpinfo()`
 *   今動いているPHPの環境情報をすべて表示する
 
