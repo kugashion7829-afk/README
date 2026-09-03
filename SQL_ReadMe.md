@@ -71,4 +71,92 @@ drop user if exists 'staff'@'localhost';
 ```
 create user 'staff'@'localhost' identified by 'password';
 ```
-*   <mark>create user</mark>は、ユーザーを作成するコマンドです。ここでは
+*   <mark>create user</mark>は、ユーザーを作成するコマンドです。ここでは「localhost」というホストに、staffというユーザーを作成します。
+*   <mark>identified by</mark>以下は、ユーザーがデータベースにログインするためのパスワードです。ここでは「password」というパスワードを指定します。
+
+### ユーザーに対する権限の付与
+*   作成したユーザーに、データベースを操作する権限を与えます。
+```
+grant all on shop.* to 'staff'@'localhost';
+```
+*   <mark>grant</mark>は、ユーザーに対してデータベースを操作する権限を与えるためのコマンドです。<mark>all on shop.*</mark>は、shopデータベースのすべてのテーブルに対して、すべての権限を与えることを表します。to以下は、ユーザー名とホスト名です。
+
+### データベースへの接続
+*   一番最後に、作成したデータベースに接続します。
+```
+use shop;
+```
+*   <mark>use</mark>は、データベースに接続するためのコマンドです。ここではshopデータベースに接続します。これ以降の操作は、shopデータベースに対して適用されます。
+*   ここまでの処理で、<mark>shopデータベースと、staffユーザー、接続するためのパスワードを作成しました。そして、shopデータベースに接続しました。</mark>
+
+### テーブルの作成
+*   データベースとそれを利用するユーザー(およびパスワード)ができました。次はデータベースの中にテーブルを作りましょう。
+*   shopデータベースの中に、productテーブルを作成します。
+```
+create table product (
+    id int auto_increment primary key,
+    name varchar(200) not null,
+    price int not null
+);
+```
+*   <mark>create table</mark>は、テーブル作成するコマンドです。ここでは、productテーブルを作成します。create tableコマンドの「(」と「)」の間には、テーブル内に作成する列を「,」で区切って指定します。
+
+### 商品番号の列
+*   1番目の列を作成します。
+```
+id int auto_increment primary key,
+```
+*   <mark>id</mark>は列の名前、<mark>int</mark>は列のデータ型です。この列は商品番号を表すので、名前をidとし、型は整数を表すintにしました。intはinteger(整数)の略で、「イント」と読みます。
+*   <mark>auto_incrementを指定すると、行を追加した時に番号が自動的に加算されます。例えば、これまでのidの最大値が「3」のときに行を追加すると、新しい行のidには自動的に「4」が設定されます。ここでは商品番号を自動的に割り振りたいと考えて、auto_incrementを指定しました。
+*   <mark>primary key</mark>というのは、行を一意に識別するための値を表します。primary keyのことを<mark>主キー</mark>と呼びます。<mark>主キーには、行ごとに異なる値を割り当てます。</mark>
+
+### 商品名の列
+*   2番目の列を作成します。
+```
+name varchar(200) not null,
+```
+*   列の名前は<mark>name</mark>、型は<mark>varchar(200)</mark>としました。varcharは可変長の文字列を表します。(可変長とは、文字数が変化しても扱えることを意味します)。()内の数値は、文字列を格納するための領域の最大長を表します。ここでは最大長が200の文字列にしました。なお、実際に格納できる文字数は、文字の種類によって異なります。例えば英字と漢字では、1文字を格納するために必要な領域の長さが異なるためです。
+*   <mark>not null</mark>というのは、「この列を<mark>null</mark>にしてはならない」という制約を表します。<mark>nullは「値が設定されていない」という特別な状態を表すための表記です。</mark>ここでは、商品名を未設定にすることはできない、という制約を課しています。
+
+### 価格の列
+*   3番目の列を作成します。この列は価格です。
+```
+price int not null
+```
+*   列の名前は<mark>price</mark>、型は整数を表す<mark>int</mark>にしました。商品名と同様に、価格も<mark>not null</mark>として、未設定にすることを禁止しました。<br>ここまでの処理で、shopデータベースの内部にproductテーブルを定義しました。
+
+### データの追加
+*   productテーブルの中に、商品のデータを追加します。データを取り出したり検索するためには、テーブルにデータが登録されている必要があるためです。入力するデータは、1行ごとに指定していきます。
+```
+insert into product values(null, '松の実', 700);
+insert into product values(null, 'くるみ', 270);
+insert into product values(null, 'ひまわりの種', 210);
+insert into product values(null, 'アーモンド', 220);
+insert into product values(null, 'カシューナッツ', 250);
+insert into product values(null, 'ジャイアントコーン', 180);
+insert into product values(null, 'ピスタチオ', 310);
+insert into product values(null, 'マカダミアナッツ', 600);
+insert into product values(null, 'かぼちゃの種', 180);
+insert into product values(null, 'ピーナッツ', 150);
+insert into product values(null, 'クコの実', 400);
+```
+*   <mark>insert into</mark>は、指定したテーブルに新しい行を追加するためのコマンドです。ここではproductテーブルに行を追加します。<br>追加するデータは<mark>values(...)のように記述します。()内には、各列に設定するデータを、「,」で区切って指定します。テーブルに定義した列の順番通りに、データを指定します。
+*   例えば、商品名を「松の実」、価格を「700」とするには、次のようなデータを指定します。
+```
+null, '松の実', 700
+```
+*   1番目の列は商品番号です。この列には「auto_increment」を指定して、自動的に番号を割り振ることにしています。「null」を指定することで自動的に番号が作成されます。
+*   2番目の列は商品名です。文字列のデータは、このように「'」で囲みます。
+*   3番目の列は価格です。数値のデータは、そのまま記述することができます。<br>以下の行も同様に、insertコマンドを用いて行を追加します。ここではナッツ類を販売する店の商品を想定して、10種類程度の商品データを追加しました。
+
+## SQLのselect文
+*   select文を使うと、指定したテーブルの、指定した列を取得することができます。
+
+### `select 列名 from テーブル名`
+*   例題で実行したSQLスクリプトは以下の通りでした。
+```
+select * from product;
+```
+*   最初に<mark>select</mark>と書きます。次の<mark>*</mark>はすべての列を指定します。最後の<mark>from product</mark>は、productテーブルを指定します。したがってこのSQLスクリプトは、「productテーブルのすべての列を取得する」という意味になります。
+*   指定した列だけを取得したい場合には、idやnameといった列名を指定します。複数の列名を指定する際には、「id,name」のように「,」で区切って並べます。
+*   末尾の「;」は文の区切りを表します。複数のSQL文を実行するときには、文と文を「;」で区切る必要があります。上記のように単独の文を実行するときには「;」を省略することもできますが、本書では単独のSQL文についても「；」を記述しています。
