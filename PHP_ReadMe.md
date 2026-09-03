@@ -728,8 +728,32 @@ $_FILES['file']['name']
 |列|格納するデータ|データの種類|
 |:---|:---|:---|
 |id|商品番号|数値|
-|name|商品名|数値|
+|name|商品名|文字列|
 |price|価格|数値|
+
+### SQLスクリプトの入力、実行方法
+*   XAMPP/MAMPでSQLスクリプトを実行するためには、付属する「phpMyAdmin」というツールを利用します。以下のパスをブラウザのURLに記述します。
+```
+http://localhost/phpmyadmin/
+```
+*   XAMPPの場合は、コントロールパネルから直接起動することもできます。
+*   SQLスクリプトを入力するために画面上部のSQLを選択して、サーバ「127.0.0.1」上でクエリを実行するというひょずの下にある空白の領域がSQLの入力欄です。入力後に実行を押下します。
+
+## データベースとユーザーの作成
+### データベースの削除
+*   例題で入力したproduct.sqlの最初は、shopデータベースがすでに存在する場合に、shopデータベースを削除する処理です。
+```
+drop database if exists shop;
+```
+*   <mark>drop database</mark>は、データベースを削除するSQLのコマンド(命令)です。if existsは、「指定するデータベースが存在する場合に」という条件を表します。
+
+### データベースの作成
+```
+create database shop default character set utf8 collate utf8_general_ci;
+```
+*   <mark>create database</mark>は、データベースを作成するコマンドです。続けて指定する名前で、データベースを作成します。
+*   <mark>default character set</mark>は、データベースで用いる文字コードを表します。ここではUTF-8を表す「utf8」を指定します。
+*   <mark>collate</mark>は、データベースにおいて行を並べる順番を決めるための方式を表します。ここではUTF-8を用いた方式の1つである、「utf8_general_ci」を指定します。MySQLにおけるcollateの詳細は、「https://dev.mysql.com/doc/refman/5.6/ja/charset-collations.html」などに記載されています。
 
 # 演算子
 
