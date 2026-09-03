@@ -614,7 +614,7 @@ foreach ($board as $message) {
 *   ここで取得した一時的なファイルが、<mark>入力画面からアップロードされたファイルかどうかを調べます。</mark>is_uploaded_file関数を使います。
 
 ### `is_uploaded_file(ファイル名)`
-*   アップロードされたファイルの場合、is_uploaded_file関数はtrueを返します。ここではif文と組み合わせて、本当にアップロードされたものだった場合にのみ処理を行っています。
+*   アップロードされたファイルの場合、is_uploaded_file関数はtrueを返します。ここではif文と組み合わせて、本当にアップロードされたものだった場合にのみ処理を行っています。<br>
 `if (is_uploaded_file($_FILES['file']['tmp_name'])) {}`
 
 ### 一時的なファイル
