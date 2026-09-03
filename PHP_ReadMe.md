@@ -591,7 +591,9 @@ foreach ($board as $message) {
 ```
 
 ### file_exists関数
-`file_exists(ファイル名)`
+```
+file_exists(ファイル名)
+```
 *   ファイルを読み込むための関数。ファイルが存在するか調べます。
 *   file_exists関数は、<mark>指定したファイルが存在する場合にはtrue、存在しない場合にはfalseを返します。</mark>
 
@@ -620,13 +622,17 @@ foreach ($board as $message) {
 
 ## アップロードされたファイルの確認
 *   <form>タグのファイル選択欄からアップロードされたファイルは、一時的なファイルに保存されます。この一時的なファイルのファイル名は、以下の記述で取得できます。
-`$_FILES['file']['tmp_name']`
+```
+$_FILES['file']['tmp_name']
+```
 *   <mark>$_FILES</mark>は、PHPによって事前に用意された変数です。<mark>file</mark>は入力画面用のスクリプトでファイル選択欄につけた名前です。<mark>tmp_name</mark>を指定することで、一時的なファイルの名前が取得できます。
 *   ここで取得した一時的なファイルが、<mark>入力画面からアップロードされたファイルかどうかを調べます。</mark>is_uploaded_file関数を使います。
 
 ### `is_uploaded_file(ファイル名)`
 *   アップロードされたファイルの場合、is_uploaded_file関数はtrueを返します。ここではif文と組み合わせて、本当にアップロードされたものだった場合にのみ処理を行っています。
-   `if (is_uploaded_file($_FILES['file']['tmp_name'])) {}`
+```
+if (is_uploaded_file($_FILES['file']['tmp_name'])) {}
+```
 
 ### 一時的なファイル
 *   ブラウザでファイルをアップロードすると、ファイルの内容がサーバサイドに送信されます。PHPは受信したファイルの内容を、サーバサイドの一時的なファイルに保存します。スクリプトが終了すると、このファイルは自動的に削除されます。
@@ -637,9 +643,13 @@ foreach ($board as $message) {
 
 ## フォルダの作成
 *   アップロードされたファイルを保存するために、サーバ上にフォルダを作成します。まず、<mark>file_exists</mark>関数を用いて、保存策のフォルダが存在するかどうかを調べます。
-   `file_exists(フォルダ名)`
+```
+file_exists(フォルダ名)
+```
 *   file_exists関数は、引数に指定したフォルダが存在する場合、trueを返します。存在しない場合、falseを返します。ここではフォルダが存在しない場合にフォルダを作成するため、以下のようなif文を記述します、フォルダ名はuploadとしました。
-   `if(!file_exists('upload')){}`
+```
+if(!file_exists('upload')){}
+```
 *   file_existsの前に付加した!は、trueとfalseを反転させる演算子です。<mark>!</mark>は論理演算子の一種で<mark>否定</mark>と呼ばれます。if文の式に「!」をつけることで、<mark>式の値がtrueではない場合は、</mark>という条件を書くことができます。<br>フォルダを作成するには、<mark>mkdir</mark>関数を使います。
 
 ### `mkdir(フォルダ名)`
