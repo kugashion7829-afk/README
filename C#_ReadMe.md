@@ -79,6 +79,7 @@ publicだと外部全部に見え、privateだと子クラスからも見えな�
 どの名前空間を使うのか指定する
 SystemであればSystem名前空間にあるクラスを利用できる
 
+----
 
 #### using UnityEngine 
 UnityEngineという名前空間を使用するという宣言
