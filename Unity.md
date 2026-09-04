@@ -19,7 +19,6 @@ Layerは「どの種類のオブジェクトと判定するか」を絞り込む
 回転を固定する
 
 #### Interpolate
-*   Interpolate
-*   
+*   Interpolate<br>
 物理更新の間を補完
 表示上の揺れを軽減します。
