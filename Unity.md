@@ -17,6 +17,9 @@ Development Buildはデバッグ情報とProfiler対応を含める設定です�
 ### Deep Profiling
 Deep Profilingは全スクリプト呼び出しを詳細に記録するため、ゲームの実行が大きく遅くなる可能性があります
 
+### Library
+LibraryはUnityがAssetを読み込んで生成するキャッシュです。容量が大きく、別の環境で再生成できるためGitには含めません。
+
 ## UnityCompornent
 
 ### Rigidbody
