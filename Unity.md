@@ -16,9 +16,9 @@ Layerは「どの種類のオブジェクトと判定するか」を絞り込む
 ### Rigidbody
 
 #### Freeze Rotation
-    回転を固定する
+回転を固定する
 
 #### Interpolate
 *   Interpolate
-    物理更新の間を補完
-    表示上の揺れを軽減します。
+物理更新の間を補完
+表示上の揺れを軽減します。
